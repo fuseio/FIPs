@@ -15,6 +15,12 @@ A FIP should contain the following sections:
 * Implementation (or Future Work) - what needs to be done in order for this FIP to be implemented
 * Additional info - things that need to be discussed, or more thought is needed on
 
+## FIP discussion
+
+Each FIP will have a dedicated issue open for it [here](https://github.com/fuseio/FIPs/issues).
+
+See (FIP-1 issue)[https://github.com/fuseio/FIPs/issues/1] as an example.
+
 ## FIP open for voting
 
 A FIP which is changing consensus related implementation on the Fuse network should be opened for voting as described [here](https://docs.fuse.io/the-fuse-chain/consensus-contracts/vote).
