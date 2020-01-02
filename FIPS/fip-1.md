@@ -19,7 +19,7 @@ A FIP should contain the following sections:
 
 Each FIP will have a dedicated issue open for it [here](https://github.com/fuseio/FIPs/issues).
 
-See (FIP-1 issue)[https://github.com/fuseio/FIPs/issues/1] as an example.
+See [FIP-1 issue](https://github.com/fuseio/FIPs/issues/1) as an example.
 
 ## FIP open for voting
 
