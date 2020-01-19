@@ -15,17 +15,11 @@ After the ballot is closed, if accepted - the bridge oracle (run by all validato
 ## Technical Spec:
 
 * Add new `ContractTypes` to `ProxyStorage` contract - `HomeBridge` and `ForeignBridge`
-* Deploy `HomeProxyStorageOwner` & `ForeignProxyStorageOwner` that will replace the MOC address as `proxyOwner` of the bridge contracts on both networks.
+* Update the relevant bridge contract address as `proxyOwner` instead of the MOC address on both networks
 * When a vote is closed and accepted - `ProxyStorage` contract emits `UpgradeBridge(_contractType, _contractAddress)` event
 * (New) watcher process on bridge oracle listens to `UpgradeBridge` events
-  * `<Network>` is according to the `_contractType` of the event
-  * Get `<Network>Bridge` current implementation version
-  * Create bridge upgrade message with new version and implementation
-  * Call `submitSignatureOfBridgeUpgrade` on `HomeBridge` with the message
+  * Creates bridge upgrade message with new contract address and contract type to update
+  * Calls `submitSignatureOfBridgeUpgrade` on `HomeBridge` with the message
 * When enough signatures are collected on `HomeBridge`, it will emit `CollectedBridgeUpgradeSignatures` event
 * (New) watcher on bridge oracle listens to `CollectedBridgeUpgradeSigantures` events
-  * Calls `upgradeTo` on `<Network>ProxyStorageOwner` which will call `upgradeTo` on the `EternalStorageProxy` of the relevant network bridge
-
-**Note #1:** `ForeignProxyStorageOwner` has the ability to call `setBridgeContract` on FuseToken, therefore will be added as minter, and thus we can remove the MOC as minter.
-
-**Note #2:** `<Network>ProxyStorageOwner` contracts will be changeable by voting with this process as well
+  * Calls `executeUpgradeBridgeSignatures` on Home/Foreign bridge contract which after verifying signatures calls `upgradeTo` on the `EternalStorageProxy` implementation of the bridge contract on the relevant network.
