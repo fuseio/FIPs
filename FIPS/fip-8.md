@@ -1,4 +1,4 @@
-# FIP8: Adjusting Block Rewards to Validator's Stake
+# FIP8: Adjusting Block Rewards by the Validator's Stake
 
 ## Problem
 
@@ -49,7 +49,7 @@ _Where:_
     _Sa - the stake of validator A_
 
 
-    _S - total stake of top 100 validators_
+    _S - total stake of current validators_
 
 
     _n - number of validators_
