@@ -1,8 +1,8 @@
-# [WIP] FIP8: Changing Validator Block Reward**
+# FIP8: Adjusting Block Rewards to Validator's Stake
 
 ## Problem
 
-The current consensus mechanism sn one important constraint:
+The current consensus mechanism has one important constraint:
 
 Validators cannot stake more than a minimum value of 100K Fuse. **Virtually, both the minimum stake and maximum stake are 100K**. While even if they could stake more, this wouldn't increase their reward.
 
@@ -21,15 +21,19 @@ The goals of this FIP are:
 
 ## Block reward function
 
-
 ### Why is a new block reward function required?
 
 By [Aura consensus](https://openethereum.github.io/wiki/Aura) which we are using, all validators get to validate the same amount of blocks, and receive the same block reward. So all validators, without considering their stake expected to receive the same rewards. The block reward function is needed to take validator’s stake into account, so the validators would lower the number of the nodes they are running.
 
 Another important property of Aura consensus, is that the time is partitioned into time slots that are divided between the validators, when each validator is allowed to validate only his time slots.
 
-The new block reward formula should have the following properties:
+### What happens when the validator misses blocks?
 
+When the validator misses his time slot to validate the block, no block is generated and hence no block reward is sent. Then the new time slots starts and the next validator is allowed to create his block in the new time slot. Meaning that, missing blocks not affect the reward of other validators, and reducing the inflation because less block rewards are generated.
+
+
+### Block reward formula 
+The new block reward formula should have the following properties:
 
 
 1. Do not change the inflation of the token over time.
@@ -132,7 +136,9 @@ Va = Ba * R = 10R
 
 vb = Bb * R = 90R
 
-### With the proposal, validator B can combine his 9 accounts into one:
+**With the proposal**
+
+Validator B can combine his 9 accounts into one
 
 
 <table>
@@ -321,19 +327,14 @@ Vb = Vb1 + Vb2 + Vb3 = 90R ✅
 _We can see that splitting the funds for Validator B, didn’t change his reward over time, fulfilling (2) property of the formula_
 
 
-### Snaphshoting
+### Calculating the validator stake and total stake
 Validator's stake and the total stake for the formula should be calculated on start of every cycle, locking the validator block rewards per cycle. Otherwise the validators could manipulate the block reward by transfering and staking Fuse tokens between the multiple validator accounts.
 
-### What happens when the validator misses blocks?
 
-When the validator misses his time slot to validate the block, no block is generated and hence no block reward is sent. Then the new time slots starts and the next validator is allowed to create his block in the new time slot. Meaning that, missing blocks not affect the reward of other validators, and reducing the inflation because less block rewards are generated.
-
-
-## Proof
-
-Mathematical proof that suggested block reward formula is sounds
+### Math Proof
 
 *Work in Progress* 🏗👷‍♂️
+
 
 ## Futher Development
 
@@ -352,18 +353,16 @@ It makes sense to disallow for the current validators to withdraw their stake. A
 
 ### Minimum delegation fee
 
-We are also considering to introduce the minimum delegation fee for validators. To stop from big players take control over the network, introducing zero fees.
+We are also considering to introduce the minimum delegation fee for validators. So big players couldn't take control over the network by introducing zero fees.
 
 
-**Pros and Cons**
+## Pros and Cons
 
-**Pros**
+### Pros
 -   One validator account and one node per validator
--   All fuse tokens can be delegated, giving revenue for all the holders
--   Voting should be easier, because validator need to vote only once
--   (Implementation is rather fast and not much changes are required)
+-   Delegation becomes a simple and open market. Giving revenues both to validators and the delegators as well
 
-**Cons**
+### Cons
 
 - While the block reward is generated per stake, the validation fees are per block. Meaning that splitting validator accounts, the validator will receive more fees.
 - When all validators have the same amount of blocks to validate, malfunctioning of small validators have the same implications as of the large ones. That got certain implications to stability of the network, opening new attack vector. Increasing the minimum stake amount 
