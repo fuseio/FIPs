@@ -13,28 +13,8 @@ Alter the onCycleEnd method of the voting contract to query the consensus contra
 
 Implementation PR: https://github.com/fuseio/fuse-network/pull/99/commits
 
+![](img/fip-9/sequence-fip9.JPG)
 
-```mermaid
-sequenceDiagram
-Consensus ->> Voting: CycleEndEvent(validators)
-opt if Active ballot
-opt if ballot can be finalized
-	loop across validators
-		Voting ->> Voting: getVoterChoice()
-		Voting ->> Consensus: stakeAmount(validator)
-		Note right of Voting: Increase accepts/ rejects by stake amount
-	end
-	Voting ->> VotingUtils: _setAccepted(ballotId, accepts)
-
-	Voting ->> VotingUtils: _setRejected(ballotId, rejects)
-	Voting ->> VotingUtils: _finalize(ballotId)
-
-	Note right of Voting: The rest remains unchanged
-	
-end
-end
-
-```
 ## Example 
 
 * Validator X has a stake of 100000 
