@@ -45,7 +45,7 @@ Strikes get reset after 50 cycles of not being jailed.
 
 Jailed validators will remain in jail until they signify they are ready to be released this will result in them being released on the next cycle or once their jail time is up (which ever comes last).
 
-###Node maintenance
+### Node maintenance
 
 If an operator foresees down time (server migration for example) they will be able to signal to be moved into the jailed list from the start of the next cycle and will need to signal when they are ready to start again. **This will not Incur any strikes**
 
