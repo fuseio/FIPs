@@ -17,6 +17,7 @@ This will:
 ## Suggestion
 
 ### Auto-Removal
+
 The consensus will be changed to count the number of blocks mined by each node per cycle.
  
 At the end of the cycle the consensus will check the performance of each validator. If the number of blocks validator by a validator falls below the expected threshold the validator will be moved from the pending list into the new “jailed list”.
@@ -30,6 +31,7 @@ Where P = Productivity threshold
 The suggested value for P is 30% (0.3) this means that a validator who validates less than 30% of their blocks in a given cycle will be jailed. In real world terms this equates to a downtime of ~33.5hrs in a single 48hr cycle.
 
 ### Strike system
+
 To ensure that operators maintain their nodes in a timely manor a strike system will be put in place for repeat offenders
 * 1st strike - 1 cycle min jail time
 * 2nd strike - 2 cycle min jail time
@@ -40,9 +42,11 @@ To ensure that operators maintain their nodes in a timely manor a strike system 
 Strikes get reset after 50 cycles of not being jailed.
 
 ### Recovery
+
 Jailed validators will remain in jail until they signify they are ready to be released this will result in them being released on the next cycle or once their jail time is up (which ever comes last).
 
-###Node maintenance 
+###Node maintenance
+
 If an operator foresees down time (server migration for example) they will be able to signal to be moved into the jailed list from the start of the next cycle and will need to signal when they are ready to start again. **This will not Incur any strikes**
 
 
