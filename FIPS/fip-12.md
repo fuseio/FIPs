@@ -12,7 +12,7 @@ Increase the block size to 20 million this will allow a 100% uplift in the numbe
 
 This FIP will not require a fork or contract changes, just a small update to the client software run by validators.
 
-The spec can will be updated to adjust "gasLimit" to 0x1312D00 (decimal 20 million). Each block minned by a validator running the new client will raise the gas limit for that block by desiredBlockSize/gasLimitBoundDivisor (15000000/1024 ~= 14650) until the 15million limit is reached. 
+The spec will be updated to adjust "gasLimit" to 0x1312D00 (decimal 20 million). Each block minned by a validator running the new client will raise the gas limit for that block by desiredBlockSize/gasLimitBoundDivisor (15000000/1024 ~= 14650) until the 15million limit is reached. 
 
 ## Things to consider
 
