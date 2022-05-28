@@ -24,7 +24,7 @@ At the end of the cycle the consensus will check the performance of each validat
 
 Whilst in the jailed list the validator will not be selected to validator blocks. It is the node operators responsibility to fix any issues present with their node and get it back in sync with the network. Once in sync the operator can request that their node be moved out of the jailed list and back into the pending list at the start of the next cycle.
 
-![](img/fip-11/equation.svg)
+![](img/fip-11/equation.png)
 
 Where P = Productivity threshold
 
